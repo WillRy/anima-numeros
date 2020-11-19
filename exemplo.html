@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anima Números - JavaScript</title>
+  </head>
+  <body>
+    <div class="numeros">
+      <ul></ul>
+    </div>
+    <script src="./dist/anima-numeros.js"></script>
+    <script>
+      // emulando uma chamada ajax para preencher os numeros
+      setTimeout(() => {
+        const html = `
+          <li>Cidades: <span data-numero>5570</span></li>
+          <li>Estados: <span data-numero>26</span></li>
+        `;
+        const numerosContainer = document.querySelector('.numeros');
+        numerosContainer.querySelector('ul').insertAdjacentHTML('beforeEnd', html);
+
+        // inicializo observer da animação
+        anima();
+
+        //informo que a contagem está ativa(terceiro parametro do AnimaNumeros)
+        numerosContainer.classList.add('ativo');
+      }, 500);
+      function anima() {
+        const animaNumeros = new AnimaNumeros('[data-numero]', '.numeros', 'ativo');
+        animaNumeros.init();
+      }
+    </script>
+  </body>
+</html>
